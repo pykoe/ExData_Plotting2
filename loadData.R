@@ -50,18 +50,31 @@ SCC <- readRDS("data/FNEI_data/Source_Classification_Code.rds")
 #     sources for each of the years 1999, 2002, 2005, and 2008.
 t <- tapply(NEI$Emissions, NEI$year, sum)
 
-library(plyr)
-emissionByYear <- ddply(NEI,~year, summarise, total=sum(Emissions) / 1000)
-
 if (!file.exists("figure")) {
   dir.create("figure")
 }
-png(filename = "figure/plot1.png",
-    width = 480, height = 480, units = "px", bg = "transparent")
-plot(emissionByYear, ylab = "total PM2.5 emission (kilo tones)")
-dev.off()
 
-# library(dplyr)
-# NEI_dt <- tbl_dt(NEI)
-# tt <- aggregate(Emissions ~ year, data=NEI_dt, sum)
-# dt <- data.frame(age=rchisq(20,10),group=sample(1:2,20,rep=T))
+# # plot 1
+# library(plyr)
+# emissionByYear <- ddply(NEI,~year, summarise, total=sum(Emissions) / 1000)
+# 
+# 
+# png(filename = "figure/plot1.png",
+#     width = 480, height = 480, units = "px", bg = "transparent")
+# plot(emissionByYear, ylab = "total PM2.5 emission (kilo tones)")
+# dev.off()
+# 
+# 
+# 
+# # library(dplyr)
+# # NEI_dt <- tbl_dt(NEI)
+# # tt <- aggregate(Emissions ~ year, data=NEI_dt, sum)
+# # dt <- data.frame(age=rchisq(20,10),group=sample(1:2,20,rep=T))
+
+
+# # plot 2
+# # Baltimore City, Maryland
+# baltimmore <- NEI[NEI$fips==24510,]
+# baltimmoreEmissionByYear <- ddply(baltimmore,~year, summarise, total=sum(Emissions) )
+# plot(baltimmoreEmissionByYear, ylab = "total PM2.5 emission")
+
