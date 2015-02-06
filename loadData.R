@@ -78,3 +78,20 @@ if (!file.exists("figure")) {
 # baltimmoreEmissionByYear <- ddply(baltimmore,~year, summarise, total=sum(Emissions) )
 # plot(baltimmoreEmissionByYear, ylab = "total PM2.5 emission")
 
+# # plot 3
+# library(ggplot2)
+# baltimoreEmissionsByYearAndType <- ddply(baltimmore,type~year, summarise, total=sum(Emissions) )
+# 
+# require(ggplot2)
+# ggplot(baltimoreEmissionsByYearAndType, aes(year, total,colour=type)) + 
+#   geom_line() + 
+#   geom_point()
+
+# # plot 4
+# # Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+# coalSCCId <- SCC[grepl("Coal", SCC$Short.Name) , c("SCC", "Short.Name")]
+# 
+# joined = merge(NEI, coalSCCId, by = "SCC")
+# coalEmissionByYear <- ddply(joined,~year, summarise, total=sum(Emissions))
+# plot(coalEmissionByYear, ylab = "total PM2.5 emission")
+
