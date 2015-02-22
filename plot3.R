@@ -18,4 +18,5 @@ png(filename = "figure/plot3.png",
 ggplot(baltimoreEmissionsByYearAndType, aes(year, total, colour=type)) + 
   geom_line() + 
   geom_point()
+
 dev.off()

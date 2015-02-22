@@ -9,5 +9,10 @@ coalEmissionByYear <- ddply(joined,~year, summarise, total=sum(Emissions))
 
 png(filename = "figure/plot4.png",
     width = 480, height = 480, units = "px", bg = "transparent")
-plot(coalEmissionByYear, ylab = "total PM2.5 emission")
+plot(coalEmissionByYear, ylab = "emission", main="Baltimore Coal combustion-related Emissions", type="b")
+
+# show the linear regression
+reg4 <- lm(data=coalEmissionByYear, formula=total~year)
+abline(reg4, col="red", lwd=1)
+
 dev.off()

@@ -10,5 +10,9 @@ baltimmoreEmissionByYear <- ddply(baltimmore,~year, summarise, total=sum(Emissio
 
 png(filename = "figure/plot2.png",
     width = 480, height = 480, units = "px", bg = "transparent")
-plot(baltimmoreEmissionByYear, ylab = "total PM2.5 emission", main="Baltimore PM2.5 Emissions")
+plot(baltimmoreEmissionByYear, ylab = "total PM2.5 emission", main="Baltimore PM2.5 Emissions", type="b")
+# show the linear regression
+reg2 <- lm(data=baltimmoreEmissionByYear, formula=total~year)
+abline(reg2, col="red", lwd=1)
+
 dev.off()

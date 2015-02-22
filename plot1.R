@@ -10,7 +10,11 @@ emissionByYear <- ddply(NEI,~year, summarise, total=sum(Emissions) / 1000)
 if (!file.exists("figure")) {
   dir.create("figure")
 }
-png(filename = "figure/plot1.png",
-    width = 480, height = 480, units = "px", bg = "transparent")
-plot(emissionByYear, ylab = "total PM2.5 emission (kilo tones)")
+png(filename = "figure/plot1.png", width = 480, height = 480, units = "px", bg = "transparent")
+plot(emissionByYear, ylab = "total PM2.5 emission (kilo tones)", type = "b")
+
+# show the linear regression
+reg <- lm(data=emissionByYear, formula=total~year)
+abline(reg, col="red", lwd=1)
+
 dev.off()

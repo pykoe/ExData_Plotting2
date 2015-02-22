@@ -1,6 +1,4 @@
 
-
-
 # data will be store in a specific directory (./data)
 if (!file.exists("data")) {
   dir.create("data")
@@ -53,45 +51,3 @@ t <- tapply(NEI$Emissions, NEI$year, sum)
 if (!file.exists("figure")) {
   dir.create("figure")
 }
-
-# # plot 1
-# library(plyr)
-# emissionByYear <- ddply(NEI,~year, summarise, total=sum(Emissions) / 1000)
-# 
-# 
-# png(filename = "figure/plot1.png",
-#     width = 480, height = 480, units = "px", bg = "transparent")
-# plot(emissionByYear, ylab = "total PM2.5 emission (kilo tones)")
-# dev.off()
-# 
-# 
-# 
-# # library(dplyr)
-# # NEI_dt <- tbl_dt(NEI)
-# # tt <- aggregate(Emissions ~ year, data=NEI_dt, sum)
-# # dt <- data.frame(age=rchisq(20,10),group=sample(1:2,20,rep=T))
-
-
-# # plot 2
-# # Baltimore City, Maryland
-# baltimmore <- NEI[NEI$fips==24510,]
-# baltimmoreEmissionByYear <- ddply(baltimmore,~year, summarise, total=sum(Emissions) )
-# plot(baltimmoreEmissionByYear, ylab = "total PM2.5 emission")
-
-# # plot 3
-# library(ggplot2)
-# baltimoreEmissionsByYearAndType <- ddply(baltimmore,type~year, summarise, total=sum(Emissions) )
-# 
-# require(ggplot2)
-# ggplot(baltimoreEmissionsByYearAndType, aes(year, total,colour=type)) + 
-#   geom_line() + 
-#   geom_point()
-
-# # plot 4
-# # Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
-# coalSCCId <- SCC[grepl("Coal", SCC$Short.Name) , c("SCC", "Short.Name")]
-# 
-# joined = merge(NEI, coalSCCId, by = "SCC")
-# coalEmissionByYear <- ddply(joined,~year, summarise, total=sum(Emissions))
-# plot(coalEmissionByYear, ylab = "total PM2.5 emission")
-
